@@ -1,12 +1,6 @@
 # ЭТАП 1: Сборка (Builder)
 FROM node:20-alpine AS builder
 WORKDIR /app
-# Копируем манифесты и ставим зависимости (кэшируется докером)
-COPY package*.json ./
-RUN npm ci
-# Копируем весь исходный код и собираем проект
-COPY . .
-RUN npm run build
 
 # ЭТАП 2: Продакшен (Production Nginx)
 FROM nginx:alpine
